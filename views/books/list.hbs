@@ -1,15 +1,60 @@
-<h1>{{title}}</h1>
+<div class="container-fluid bg-dark text-light p-5 pb-0 mb-5">
+  <div class="container bg-dark p-5">
+    <h1 class="display-4">
+      <img width="50" src="/img/libro.png" />
+      Welcome to my books
+    </h1>
+    <hr />
 
-{{#each booksList}}
-  <div>
-    <h2>{{title}}</h2>
-    <p>{{author}}</p>
-    <p>{{edition}}</p>
-    <p><a href="/books/{{id}}/detail">VER DETALLE</a></p>
-    <p><a href="/books/{{id}}/edit">EDITAR BOOK</a></p>
-    <form action="/books/{{id}}/delete" method="POST">
-      <button type="submit">BORRAR BOOK</button>
+    <form class="list-filter-form" method="GET" action="/books">
+      <div class="input-container">
+        <label for="exampleInputEmail1" class="form-label">Edition</label>
+        <input type="number" class="form-control" name="edition" />
+      </div>
+
+      <div class="input-container">
+        <label for="exampleInputEmail1" class="form-label">Author</label>
+        <input type="text" class="form-control" name="author" />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <p></p>
   </div>
-{{/each}}
+</div>
+
+<div class="container">
+  <h2 class="mt-3 mb-5">Books ({{booksList.length}})</h2>
+
+  <div class="row gy-4 pb-4">
+    {{#each booksList}}
+      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <div class="custom-card" style="background-image:url({{image}})">
+          <div class="custom-card-overlay"></div>
+          <div class="custom-card-content">
+            <h2 class="custom-card-content-title">{{title}}</h2>
+            <p class="custom-card-content-author">{{author}} - {{edition}}</p>
+
+            <div class="custom-card-content-actions">
+              <a class="btn btn-primary" href="/books/{{id}}/detail">
+                <i class="fa fa-eye"></i>
+              </a>
+
+              <a class="btn btn-secondary" href="/books/{{id}}/edit">
+                <i class="fa fa-edit"></i>
+              </a>
+
+              <form action="/books/{{id}}/delete" method="POST">
+                <button type="submit" class="btn btn-danger button-delete">
+                  <i class="fa fa-times"></i>
+                </button>
+              </form>
+
+            </div>
+
+            <p></p>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

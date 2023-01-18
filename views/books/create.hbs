@@ -1,20 +1,27 @@
-<h1>CREATE BOOK</h1>
+<form class="create-book-form" action="/books/create" method="POST">
+  <h3 class="mb-4">Create your book</h3>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Title</label>
+    <input type="text" class="form-control" name="title" />
+    <div id="emailHelp" class="form-text">
+      We'll never share your title with anyone else.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Author</label>
+    <input type="text" class="form-control" name="author" />
 
-<form action="/books/create" method="POST">
-  <label>
-    Title
-    <input type="text" name="title" />
-  </label>
-
-  <label>
-    Author
-    <input type="text" name="author" />
-  </label>
-
-  <label>
-    Edition
-    <input type="number" name="edition" />
-  </label>
-
-  <button type="submit">Create Book!</button>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Edition</label>
+    <input type="number" class="form-control" name="edition" />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Image</label>
+    <input type="text" class="form-control" name="image" />
+    <div id="emailHelp" class="form-text">
+      Upload your image to imgur.com and paste the link here
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Create</button>
 </form>

@@ -9,9 +9,14 @@ const bookSchema = new mongoose.Schema({
   author: {
     type: String,
     required: [true, "title name is required for a student"],
+    unique: true,
   },
   edition: {
     type: Number,
+  },
+  image: {
+    type: String,
+    default: 'https://picsum.photos/200/300?random=1'
   }
 }, {
   timestamps: true

@@ -13,8 +13,11 @@ app.use(express.urlencoded({ extended: true })); // para que el body de las peti
 app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
 
+/** Configure static files */
+app.use(express.static("public"));
+
 app.get('/', (req, res) => {
-  res.render('misc/home');
+  res.redirect('/books');
 });
 
 app.get('/about', (req, res) => {
@@ -28,13 +31,25 @@ app.get('/books/create', (req, res) => {
 app.post('/books/create', (req, res) => {
   Book.create(req.body)
     .then(book => {
-      res.send(book)
+      console.log('book', book)
+      res.redirect('/books')
     })
     .catch(err => res.send(err))
 })
 
 app.get('/books', (req, res) => {
-  Book.find()
+  let criteria = {}
+
+  if (req.query.edition) {
+    criteria.edition = req.query.edition
+  }
+
+  if (req.query.author) {
+    criteria.author = req.query.author
+  }
+  // en esta linea criteria si ha llegado req.query.edition es { edition: 'req.query.edition' } y si no es {}
+
+  Book.find(criteria)
     .then(books => {
       res.render('books/list', { booksList: books, title: 'Books' }) // booksList es el nombre de la variable que se va a usar en el hbs que contiene los books encontrados
     })
@@ -42,7 +57,7 @@ app.get('/books', (req, res) => {
 })
 
 app.get('/books/:bookId/detail', (req, res) => {
-  Book.findById(req.params.bookId) // Esto es lo mismo Book.find({ _id: '63c5a449e00d1bb10e277dd8' })
+  Book.findById(req.params.bookId) // Esto es lo mismo Book.find({ _id: '63c5a449e00d1bb10e277dd8' }) pero devuelve un objeto y no un array
     .then(book => {
       res.render('books/detail', { book })
     })
