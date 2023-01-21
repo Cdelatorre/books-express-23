@@ -1,0 +1,15 @@
+<div class="mt-5 pt-4 container">
+  <h1>{{user.username}}</h1>
+  <h2>{{user.email}}</h2>
+  <h2>{{user.bookOwned.title}}</h2>
+  <h2>{{user.bookOwned.author}}</h2>
+  <h2>{{user.bookOwned.edition}}</h2>
+
+  {{#each user.likes}}
+    <div class="card">
+      {{book.title}}
+      {{book.author}}
+      {{book.edition}}
+    </div>
+  {{/each}}
+</div>

@@ -1,0 +1,50 @@
+<form class="create-user-form" action="/users/register" method="POST">
+  <h3 class="mb-4">Create your account</h3>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Username</label>
+    <input
+      value="{{user.username}}"
+      type="text"
+      class="form-control {{#if errors.username}}is-invalid{{/if}}"
+      name="username"
+    />
+    {{#if errors.username}}
+      <div id="validationServer03Feedback" class="invalid-feedback">
+        {{errors.username.message}}
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email</label>
+    <input
+      value="{{user.email}}"
+      type="text"
+      class="form-control {{#if errors.email}}is-invalid{{/if}}"
+      name="email"
+    />
+    {{#if errors.email}}
+      <div id="validationServer03Feedback" class="invalid-feedback">
+        {{errors.email.message}}
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Password</label>
+    <input type="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" name="password" />
+    {{#if errors.password}}
+      <div id="validationServer03Feedback" class="invalid-feedback">
+        {{errors.password.message}}
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Book reference</label>
+    <input type="text" class="form-control" name="bookOwned" />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Register</button>
+</form>
