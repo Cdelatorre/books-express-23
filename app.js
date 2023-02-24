@@ -22,4 +22,6 @@ app.use(express.static("public"));
 /** Router **/
 app.use("/", router);
 
-app.listen(3000, () => console.log("App listening on port 3000!"));
+const port = Number(process.env.PORT || 3001);
+
+app.listen(port, () => console.log(`App listening on port ${port}`));
